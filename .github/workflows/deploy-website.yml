@@ -13,14 +13,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Google Auth
+        id: auth
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCLOUD_SERVICE_KEY }}
+
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
-          service_account_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
           project_id: fableford
 
       - name: Deploy to GCS
         run: |
-          gsutil -m rm -r gs://${{ vars.GCS_BUCKET_NAME }}/** # remove existing files.
-          gsutil -m cp -r . gs://${{ vars.GCS_BUCKET_NAME }}/ # copy new files.
-          gsutil acl ch -r -u allUsers:R gs://${{ vars.GCS_BUCKET_NAME }}/ # make all files public.
+          gsutil -m rm -r gs://${{ vars.GCS_BUCKET_NAME }}/** # remove existing files
+          gsutil -m cp -r public/* gs://${{ vars.GCS_BUCKET_NAME }}/ # copy only contents of public directory
+          gsutil acl ch -r -u allUsers:R gs://${{ vars.GCS_BUCKET_NAME }}/ # make all files public
