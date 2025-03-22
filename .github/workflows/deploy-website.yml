@@ -1,0 +1,26 @@
+name: Deploy to Google Cloud Storage
+
+on:
+  push:
+    branches:
+      - main # Or your main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          service_account_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
+          project_id: fableford
+
+      - name: Deploy to GCS
+        run: |
+          gsutil -m rm -r gs://${{ vars.GCS_BUCKET_NAME }}/** # remove existing files.
+          gsutil -m cp -r . gs://${{ vars.GCS_BUCKET_NAME }}/ # copy new files.
+          gsutil acl ch -r -u allUsers:R gs://${{ vars.GCS_BUCKET_NAME }}/ # make all files public.
