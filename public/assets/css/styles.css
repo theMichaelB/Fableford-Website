@@ -54,7 +54,7 @@ body {
 
 .concept-icon {
     font-size: 3rem;
-    color: var(--primary-color);
+    color: var(--secondary-color);
     margin-bottom: 1rem;
 }
 
@@ -114,6 +114,27 @@ footer a:hover {
     background-color: var(--primary-color);
     color: var(--text-light);
     border-color: #495057;
+}
+
+/* Icon visibility fixes for dark mode */
+[data-theme="dark"] .concept-icon {
+    color: #4dabf7; /* Brighter blue for better visibility in dark mode */
+}
+
+[data-theme="dark"] .fas,
+[data-theme="dark"] .fab {
+    color: inherit;
+}
+
+[data-theme="dark"] footer .fab,
+[data-theme="dark"] .navbar .fas,
+[data-theme="dark"] .hero .fas {
+    color: var(--text-light);
+}
+
+/* Ensure the theme switch icons are always visible */
+.theme-icon .fas {
+    color: #f8f9fa !important;
 }
 
 /* Dark Mode Toggle Switch */
