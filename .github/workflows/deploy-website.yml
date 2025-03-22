@@ -24,8 +24,26 @@ jobs:
         with:
           project_id: fableford
 
+
+
       - name: Deploy to GCS
         run: |
-          gsutil -m rm -r gs://${{ vars.GCS_BUCKET_NAME }}/** # remove existing files
-          gsutil -m cp -r public/* gs://${{ vars.GCS_BUCKET_NAME }}/ # copy only contents of public directory
-          gsutil acl ch -r -u allUsers:R gs://${{ vars.GCS_BUCKET_NAME }}/ # make all files public
+          # Debug the bucket name variable
+          echo "GCS Bucket Name: ${{ vars.GCS_BUCKET_NAME }}"
+          
+          # Check if the bucket exists first
+          if gsutil ls -b gs://${{ vars.GCS_BUCKET_NAME }}/ &>/dev/null; then
+            echo "Bucket exists, proceeding with deployment"
+            # Remove existing files (only if bucket exists)
+            gsutil -m rm -r gs://${{ vars.GCS_BUCKET_NAME }}/**
+          else
+            echo "Bucket doesn't exist or is inaccessible. Check your bucket name and permissions."
+            echo "Creating bucket if it doesn't exist"
+            gsutil mb -p fableford gs://${{ vars.GCS_BUCKET_NAME }}/
+          fi
+          
+          # Copy new files
+          gsutil -m cp -r public/* gs://${{ vars.GCS_BUCKET_NAME }}/
+          
+          # Make all files public
+          gsutil acl ch -r -u allUsers:R gs://${{ vars.GCS_BUCKET_NAME }}/
