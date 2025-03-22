@@ -29,4 +29,3 @@ jobs:
         run: |
           gsutil -m rm -r gs://${{ vars.GCS_BUCKET_NAME }}/** # remove existing files
           gsutil -m cp -r public/* gs://${{ vars.GCS_BUCKET_NAME }}/ # copy only contents of public directory
-          gsutil acl ch -r -u allUsers:R gs://${{ vars.GCS_BUCKET_NAME }}/ # make all files public
