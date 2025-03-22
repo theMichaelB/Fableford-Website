@@ -25,7 +25,40 @@ jobs:
         with:
           project_id: fableford
 
-      - name: Deploy to GCS
+      - name: Apply cache busting
         run: |
-          gsutil -m rm -r gs://${{ vars.GCS_BUCKET_NAME }}/** # remove existing files
-          gsutil -m cp -r public/* gs://${{ vars.GCS_BUCKET_NAME }}/ # copy only contents of public directory
+          # Generate a version string using timestamp and short commit hash
+          VERSION=$(date +%Y%m%d%H%M%S)-${GITHUB_SHA::7}
+          
+          # Replace VERSION_PLACEHOLDER in HTML files
+          find public -type f -name "*.html" -exec sed -i "s/VERSION_PLACEHOLDER/$VERSION/g" {} \;
+          
+          # Optional: Output the version for logging purposes
+          echo "Applied version: $VERSION"
+
+      - name: Set Cache-Control metadata
+        run: |
+          # Create a file with Cache-Control metadata settings
+          cat > cache-control-metadata.txt << EOF
+          public/index.html=Cache-Control:no-cache,max-age=0
+          public/assets/css/*=Cache-Control:public,max-age=31536000
+          public/assets/js/*=Cache-Control:public,max-age=31536000
+          public/assets/images/*=Cache-Control:public,max-age=31536000
+          EOF
+
+      - name: Deploy to GCS with CDN configuration
+        run: |
+          # Remove existing files
+          gsutil -m rm -r gs://${{ vars.GCS_BUCKET_NAME }}/** || true
+          
+          # Copy HTML files with no-cache headers
+          gsutil -h "Cache-Control:no-cache,max-age=0" -m cp public/*.html gs://${{ vars.GCS_BUCKET_NAME }}/
+          
+          # Copy CSS, JS, and images with long cache times (1 year)
+          gsutil -h "Cache-Control:public,max-age=31536000" -m cp -r public/assets gs://${{ vars.GCS_BUCKET_NAME }}/assets
+          
+          # Make all files publicly accessible
+          gsutil acl ch -r -u allUsers:R gs://${{ vars.GCS_BUCKET_NAME }}/
+          
+          # Optional: Explicitly invalidate cache via Cloud CDN if you're using it
+          # gcloud compute url-maps invalidate-cdn-cache YOUR_URL_MAP --path "/*"
