@@ -64,7 +64,7 @@ body {
     justify-content: center;
     width: 40px;
     height: 40px;
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     color: white;
     border-radius: 50%;
     margin-bottom: 1rem;
@@ -135,6 +135,13 @@ footer a:hover {
 /* Ensure the theme switch icons are always visible */
 .theme-icon .fas {
     color: #f8f9fa !important;
+}
+
+/* Enhance step number visibility in dark mode */
+[data-theme="dark"] .step-number {
+    background-color: #3498db; /* Using the original secondary-color value */
+    color: white;
+    border: 2px solid white; /* Adding a white border for better definition */
 }
 
 /* Dark Mode Toggle Switch */
