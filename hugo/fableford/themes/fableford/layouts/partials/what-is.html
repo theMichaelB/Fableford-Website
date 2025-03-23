@@ -1,0 +1,31 @@
+<section class="py-5" id="what-is">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2 class="mb-4">{{ .Params.whatIs.title }}</h2>
+                {{ .Params.whatIs.content | markdownify }}
+            </div>
+            <div class="col-lg-6">
+                <div class="card shadow-sm">
+                    <div class="card-body p-4">
+                        <h4 class="mb-3">Fableford is...</h4>
+                        {{ range .Params.whatIs.features.is }}
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <div>{{ . | markdownify }}</div>
+                        </div>
+                        {{ end }}
+                        
+                        <h4 class="mb-3 mt-4">Fableford is not...</h4>
+                        {{ range .Params.whatIs.features.isNot }}
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-times-circle text-danger me-2"></i>
+                            <div>{{ . | markdownify }}</div>
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 

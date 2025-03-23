@@ -1,0 +1,19 @@
+<section class="py-5 bg-light" id="how-it-works">
+    <div class="container">
+        <h2 class="text-center mb-5">{{ .Params.howItWorks.title }}</h2>
+        
+        <div class="row g-4">
+            {{ range .Params.howItWorks.items }}
+            <div class="col-md-6 text-center">
+                <div class="card h-100 shadow-sm py-4 px-3">
+                    <div class="mb-4">
+                        <i class="{{ .icon }} fa-5x text-primary"></i>
+                    </div>
+                    <h4>{{ .title }}</h4>
+                    <p>{{ .description }}</p>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section> 

@@ -1,0 +1,17 @@
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p>&copy; {{ now.Format "2006" }} {{ .Site.Title }}. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                {{ range .Site.Params.footer.links }}
+                <a href="{{ .url }}" class="me-3">
+                    {{ with .icon }}<i class="{{ . }}"></i>{{ end }}
+                    {{ .text }}
+                </a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</footer> 

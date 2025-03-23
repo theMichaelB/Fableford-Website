@@ -1,0 +1,51 @@
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">{{ .Params.examples.title }}</h2>
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10">
+                <div class="card shadow-sm mb-5">
+                    <div class="card-body">
+                        <div class="text-center mb-4">
+                            <i class="{{ .Params.examples.icon }} fa-4x text-primary"></i>
+                        </div>
+                        <h5 class="card-title text-center mb-4">{{ .Params.examples.subtitle }}</h5>
+                        
+                        <div class="row g-4">
+                            {{ range .Params.examples.stories }}
+                            <div class="col-md-4">
+                                <div class="card h-100 border-{{ .color }}">
+                                    <div class="card-header bg-{{ .color }} text-white">
+                                        <div class="d-flex align-items-center">
+                                            <i class="{{ .icon }} me-2"></i>
+                                            <strong>{{ .title }}</strong>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">{{ .description }}</p>
+                                        <div class="text-muted">
+                                            <small><i class="fas fa-user me-1"></i> {{ .author }}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{ end }}
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <p>{{ .Params.examples.conclusion }}</p>
+                            <div class="d-flex justify-content-center my-3">
+                                <i class="fas fa-long-arrow-alt-down fa-3x text-primary"></i>
+                            </div>
+                            <p>{{ .Params.examples.finalNote }}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <p class="lead">{{ .Params.examples.emphasis | markdownify }}</p>
+                    <p>{{ .Params.examples.explanation }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 
