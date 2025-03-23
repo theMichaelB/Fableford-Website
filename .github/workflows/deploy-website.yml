@@ -1,4 +1,4 @@
-name: Deploy to Google Cloud Storage
+name: Build Hugo and Deploy to Google Cloud Storage
 
 on:
   push:
@@ -7,12 +7,41 @@ on:
   workflow_dispatch: # Allows manual triggering
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Build Hugo site
+        run: |
+          cd hugo/fableford
+          hugo --minify
+
+      - name: Copy Hugo output to public directory
+        run: |
+          # Create public directory if it doesn't exist
+          mkdir -p public
+          
+          # Remove any existing content in public directory
+          rm -rf public/*
+          
+          # Copy Hugo-generated content to public directory
+          cp -r hugo/fableford/public/* public/
+          
+          # Output for logging
+          echo "Copied Hugo build output to public directory"
+          ls -la public/
 
       - name: Google Auth
         id: auth
@@ -56,9 +85,7 @@ jobs:
           
           # Copy CSS, JS, and images with long cache times (1 year)
           gsutil -h "Cache-Control:public,max-age=31536000" -m cp -r public/assets gs://${{ vars.GCS_BUCKET_NAME }}/assets
-          
-          # Make all files publicly accessible
-          gsutil acl ch -r -u allUsers:R gs://${{ vars.GCS_BUCKET_NAME }}/
+
           
           # Optional: Explicitly invalidate cache via Cloud CDN if you're using it
           # gcloud compute url-maps invalidate-cdn-cache YOUR_URL_MAP --path "/*"
