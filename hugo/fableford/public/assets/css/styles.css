@@ -1,0 +1,200 @@
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --text-dark: #333333;
+    --text-light: #ffffff;
+    --bg-light: #ffffff;
+    --bg-secondary-light: #f8f9fa;
+}
+
+[data-theme="dark"] {
+    --primary-color: #1a2530;
+    --secondary-color: #2980b9;
+    --accent-color: #c0392b;
+    --text-dark: #f8f9fa;
+    --text-light: #f8f9fa;
+    --bg-light: #121212;
+    --bg-secondary-light: #212529;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    transition: all 0.3s ease;
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-light);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+.hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+.hero-icon {
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
+}
+
+.concept-icon {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.cta-section {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 5rem 0;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #c0392b;
+    border-color: #c0392b;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 2rem 0;
+}
+
+footer a {
+    color: var(--text-light);
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--secondary-color);
+}
+
+/* Dark mode styles */
+.bg-light {
+    background-color: var(--bg-secondary-light) !important;
+}
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .form-control {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border-color: #495057;
+}
+
+/* Icon visibility fixes for dark mode */
+[data-theme="dark"] .concept-icon {
+    color: #4dabf7; /* Brighter blue for better visibility in dark mode */
+}
+
+[data-theme="dark"] .fas,
+[data-theme="dark"] .fab {
+    color: inherit;
+}
+
+[data-theme="dark"] footer .fab,
+[data-theme="dark"] .navbar .fas,
+[data-theme="dark"] .hero .fas {
+    color: var(--text-light);
+}
+
+/* Ensure the theme switch icons are always visible */
+.theme-icon .fas {
+    color: #f8f9fa !important;
+}
+
+/* Enhance step number visibility in dark mode */
+[data-theme="dark"] .step-number {
+    background-color: #3498db; /* Using the original secondary-color value */
+    color: white;
+    border: 2px solid white; /* Adding a white border for better definition */
+}
+
+/* Dark Mode Toggle Switch */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 24px;
+    position: relative;
+    width: 48px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    background-color: white;
+    bottom: 4px;
+    content: "";
+    height: 16px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 16px;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--secondary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+.theme-icon {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+}
