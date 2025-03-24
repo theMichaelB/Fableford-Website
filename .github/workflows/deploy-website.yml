@@ -79,9 +79,23 @@ jobs:
         run: |
           # Remove existing files
           gsutil -m rm -r gs://${{ vars.GCS_BUCKET_NAME }}/** || true
+
+          # Create temporary directory structure for all HTML files
+          mkdir -p temp_deploy
           
-          # Copy HTML files with no-cache headers
-          gsutil -h "Cache-Control:no-cache,max-age=0" -m cp public/*.html gs://${{ vars.GCS_BUCKET_NAME }}/
+          # Copy all HTML files while preserving directory structure
+          find public -name "*.html" | while read htmlfile; do
+            # Get the relative path from the public directory
+            relpath=${htmlfile#public/}
+            # Create the parent directory in the temp_deploy directory
+            mkdir -p "temp_deploy/$(dirname "$relpath")"
+            # Copy the file to the temp_deploy directory
+            cp "$htmlfile" "temp_deploy/$relpath"
+          done
+          
+          # Copy HTML files with no-cache headers, preserving directory structure
+          gsutil -h "Cache-Control:no-cache,max-age=0" -m cp -r temp_deploy/* gs://${{ vars.GCS_BUCKET_NAME }}/
+
           
           # Copy CSS, JS, and images with long cache times (1 year)
           gsutil -h "Cache-Control:public,max-age=31536000" -m cp -r public/assets gs://${{ vars.GCS_BUCKET_NAME }}/assets
@@ -89,3 +103,4 @@ jobs:
           
           # Optional: Explicitly invalidate cache via Cloud CDN if you're using it
           # gcloud compute url-maps invalidate-cdn-cache YOUR_URL_MAP --path "/*"
+          
