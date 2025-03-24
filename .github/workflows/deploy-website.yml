@@ -26,7 +26,7 @@ jobs:
       - name: Build Hugo site
         run: |
           cd hugo/fableford
-          hugo --minify
+          hugo #--minify
 
       - name: Copy Hugo output to public directory
         run: |

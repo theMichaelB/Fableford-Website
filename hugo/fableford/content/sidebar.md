@@ -1,5 +1,5 @@
 ---
-title: "Sidebar"
+title: "Sidebar-Test"
 description: "A brief description of this document for SEO purposes"
 featured_icon: "fas fa-book"  # Replace with an appropriate Font Awesome icon
 icon_color: "primary"  # Options: primary, secondary, success, danger, warning, info
