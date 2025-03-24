@@ -2,34 +2,42 @@ baseURL = "https://www.fableford.com"
 languageCode = "en-us"
 title = "Fableford"
 theme = "fableford"
-disableKinds = ["categories", "tags", "taxonomy", "RSS"]
 
 [menu]
   [[menu.main]]
-    identifier = "what-is"
-    name = "What is Fableford?"
-    url = "#what-is"
+    identifier = "home"
+    name = "Home"
+    url = "/"
     weight = 1
   [[menu.main]]
-    identifier = "how-it-works"
-    name = "How It Works"
-    url = "#how-it-works"
+    identifier = "learn-more"
+    name = "Learn More"
+    url = "/learn-more/"
     weight = 2
   [[menu.main]]
     identifier = "for-writers"
     name = "For Writers"
-    url = "/homepage/"
+    url = "/for-writers/"
     weight = 3
   [[menu.main]]
     identifier = "for-readers"
     name = "For Readers"
-    url = "/sidebar/"
+    url = "/for-readers/"
     weight = 4
   [[menu.main]]
     identifier = "join-beta"
     name = "Join Beta"
-    url = "#join-beta"
+    url = "/#join-beta"
     weight = 5
 
 [params]
-  description = "Fableford is a collaborative storytelling platform where writers create and publish interconnected stories through their own characters in a shared world." 
+  description = "Fableford is a collaborative storytelling platform where writers create and publish interconnected stories through their own characters in a shared world."
+  
+  [params.footer]
+    [[params.footer.links]]
+      icon = "fab fa-discord"
+      text = "Join our Discord"
+      url = "#"
+    [[params.footer.links]]
+      text = "Privacy Policy"
+      url = "#"

@@ -1,0 +1,302 @@
+{{ define "main" }}
+    <!-- Page Header -->
+    <header class="gradient-bg py-5 mt-5">
+        <div class="container text-center">
+            <h1 class="mt-5">{{ .Params.pageHeader.title }}</h1>
+            <p class="lead text-light">{{ .Params.pageHeader.subtitle }}</p>
+        </div>
+    </header>
+
+    <!-- Introduction Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="mb-4">{{ .Params.intro.title }}</h2>
+                    {{ .Params.intro.content | markdownify }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reading Experience Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ .Params.readingExperience.title }}</h2>
+            <div class="row g-4">
+                {{ range .Params.readingExperience.features }}
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <i class="{{ .icon }} fa-3x text-primary"></i>
+                            </div>
+                            <h4>{{ .title }}</h4>
+                            <p>{{ .description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Options Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ .Params.navigationOptions.title }}</h2>
+            <div class="row g-4">
+                {{ range .Params.navigationOptions.methods }}
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex mb-3">
+                                <div class="me-3">
+                                    <i class="{{ .icon }} fa-2x text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4>{{ .title }}</h4>
+                                    <p>{{ .description }}</p>
+                                    <div class="bg-light p-3 rounded">
+                                        <strong>Example:</strong> {{ .example }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- Discovery System Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ .Params.discovery.title }}</h2>
+            <div class="row justify-content-center mb-4">
+                <div class="col-lg-8 text-center">
+                    {{ .Params.discovery.content | markdownify }}
+                </div>
+            </div>
+            <div class="row g-4">
+                {{ range .Params.discovery.features }}
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <i class="{{ .icon }} fa-3x text-primary"></i>
+                            </div>
+                            <h4>{{ .title }}</h4>
+                            <p>{{ .description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- Reader Contribution Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ .Params.readerContribution.title }}</h2>
+            <div class="row justify-content-center mb-4">
+                <div class="col-lg-8 text-center">
+                    {{ .Params.readerContribution.content | markdownify }}
+                </div>
+            </div>
+            <div class="row g-4">
+                {{ range .Params.readerContribution.ways }}
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <i class="{{ .icon }} fa-3x text-primary"></i>
+                            </div>
+                            <h4>{{ .title }}</h4>
+                            <p>{{ .description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Warnings Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ .Params.contentWarnings.title }}</h2>
+            <div class="row justify-content-center mb-4">
+                <div class="col-lg-8 text-center">
+                    {{ .Params.contentWarnings.content | markdownify }}
+                </div>
+            </div>
+            
+            <!-- Warning Tiers -->
+            <div class="row g-4 mb-5">
+                {{ range .Params.contentWarnings.tiers }}
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <i class="{{ .icon }} fa-3x"></i>
+                            </div>
+                            <h4>{{ .level }}</h4>
+                            <p>{{ .description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+            
+            <!-- Warning Categories -->
+            <h4 class="text-center mb-4">Content Warning Categories</h4>
+            <div class="row g-4">
+                {{ range .Params.contentWarnings.categories }}
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    <i class="{{ .icon }} fa-2x text-primary"></i>
+                                </div>
+                                <div>
+                                    <h5>{{ .name }}</h5>
+                                    <p class="mb-0">{{ .examples }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- Access Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ .Params.accessFeatures.title }}</h2>
+            <div class="row g-4">
+                {{ range .Params.accessFeatures.features }}
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <i class="{{ .icon }} fa-3x text-primary"></i>
+                            </div>
+                            <h4>{{ .title }}</h4>
+                            <p>{{ .description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ .Params.faq.title }}</h2>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="accordion" id="readerFAQ">
+                        {{ range $index, $faq := .Params.faq.questions }}
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="heading{{ $index }}">
+                                <button class="accordion-button {{ if not .expanded }}collapsed{{ end }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $index }}" aria-expanded="{{ .expanded }}" aria-controls="collapse{{ $index }}">
+                                    {{ .question }}
+                                </button>
+                            </h3>
+                            <div id="collapse{{ $index }}" class="accordion-collapse collapse {{ if .expanded }}show{{ end }}" aria-labelledby="heading{{ $index }}" data-bs-parent="#readerFAQ">
+                                <div class="accordion-body">
+                                    <p>{{ .answer }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Example Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">See How Stories Connect</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card shadow-sm mb-5">
+                        <div class="card-body">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-project-diagram fa-4x text-primary"></i>
+                            </div>
+                            <h5 class="card-title text-center mb-4">Example: Multiple Perspectives</h5>
+                            
+                            <div class="row g-4">
+                                <div class="col-md-4">
+                                    <div class="card h-100 border-primary">
+                                        <div class="card-header bg-primary text-white">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-book me-2"></i>
+                                                <strong>Eleanor's Perspective</strong>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text">Eleanor glanced at the clock as the bell above the door jingled. The schoolteacher – Sophie, wasn't it? – entered the bookshop, looking flustered. Eleanor smiled politely, wondering if this would be another quick browse or an actual sale.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="card h-100 border-success">
+                                        <div class="card-header bg-success text-white">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-chalkboard-teacher me-2"></i>
+                                                <strong>Sophie's Perspective</strong>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text">Sophie rushed into the bookshop, cheeks flushed from hurrying. The owner – Eleanor, according to the sign – gave her that same reserved smile. Sophie hoped her nervousness wasn't too obvious as she approached with her carefully prepared list of books for the school library.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="card h-100 border-info">
+                                        <div class="card-header bg-info text-white">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-newspaper me-2"></i>
+                                                <strong>Gazette Report</strong>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text">Local schoolteacher Sophie Williams and bookshop owner Eleanor Frost announced a new partnership yesterday, bringing a monthly book club to Fableford Primary School. The initiative began after a chance meeting at Turning Pages Bookshop last month.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mt-4">
+                                <p>As a reader, you can explore this single interaction from multiple viewpoints, discovering the thoughts, feelings, and misunderstandings that make up the rich tapestry of Fableford's character relationships.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container text-center py-5">
+            <h2 class="mb-4">{{ .Params.cta.title }}</h2>
+            <p class="lead mb-5">{{ .Params.cta.description }}</p>
+            <a href="{{ .Params.cta.button.url }}" class="btn btn-primary btn-lg">{{ .Params.cta.button.text }}</a>
+        </div>
+    </section>
+{{ end }}
