@@ -1,0 +1,131 @@
+{{ define "main" }}
+<div class="container py-5 mt-5">
+    <div class="row">
+        <!-- Sidebar Column -->
+        <div class="col-lg-3">
+            <div class="sidebar sticky-top" style="top: 100px;">
+                {{ if .Params.sidebar.title }}
+                <h4>{{ .Params.sidebar.title }}</h4>
+                {{ end }}
+                
+                <!-- Table of Contents -->
+                {{ if .Params.sidebar.toc }}
+                <div class="toc-container mb-4">
+                    <h5>Contents</h5>
+                    {{ .TableOfContents }}
+                </div>
+                {{ end }}
+                
+                <!-- Related Links -->
+                {{ if .Params.sidebar.related_links }}
+                <div class="related-links mb-4">
+                    <h5>Related Pages</h5>
+                    <ul class="list-unstyled">
+                        {{ range .Params.sidebar.related_links }}
+                        <li class="mb-2">
+                            <a href="{{ .url }}" {{ if .external }}target="_blank" rel="noopener"{{ end }}>
+                                {{ .title }}
+                                {{ if .external }}<i class="fas fa-external-link-alt ms-1 small"></i>{{ end }}
+                            </a>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </div>
+                {{ end }}
+                
+                <!-- Downloads -->
+                {{ if .Params.sidebar.downloads }}
+                <div class="downloads mb-4">
+                    <h5>Downloads</h5>
+                    <ul class="list-unstyled">
+                        {{ range .Params.sidebar.downloads }}
+                        <li class="mb-2">
+                            <a href="{{ .url }}" class="d-flex align-items-center">
+                                {{ if .icon }}<i class="{{ .icon }} me-2"></i>{{ end }}
+                                {{ .title }}
+                            </a>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </div>
+                {{ end }}
+                
+                <!-- Contact Info -->
+                {{ if .Params.sidebar.contact_info }}
+                <div class="contact-info p-3 bg-light rounded">
+                    <h5>{{ .Params.sidebar.contact_info.heading }}</h5>
+                    <p>{{ .Params.sidebar.contact_info.text }}</p>
+                    {{ if .Params.sidebar.contact_info.email }}
+                    <a href="mailto:{{ .Params.sidebar.contact_info.email }}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-envelope me-1"></i> Email Support
+                    </a>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </div>
+        </div>
+        
+        <!-- Content Column -->
+        <div class="col-lg-9">
+            <article class="content-container">
+                <header class="mb-4">
+                    <h1>{{ .Title }}</h1>
+                    <div class="meta text-muted mb-4">
+                        {{ if .Params.author }}
+                        <span class="me-3"><i class="fas fa-user me-1"></i> {{ .Params.author }}</span>
+                        {{ end }}
+                        <span class="me-3"><i class="fas fa-calendar me-1"></i> {{ .Date.Format "January 2, 2006" }}</span>
+                        {{ if .Params.categories }}
+                        <span><i class="fas fa-folder me-1"></i> 
+                            {{ range $index, $category := .Params.categories }}
+                                {{ if gt $index 0 }}, {{ end }}
+                                <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+                            {{ end }}
+                        </span>
+                        {{ end }}
+                    </div>
+                    
+                    {{ if .Params.featured_icon }}
+                    <div class="featured-icon text-{{ if .Params.icon_color }}{{ .Params.icon_color }}{{ else }}primary{{ end }} mb-4">
+                        <i class="{{ .Params.featured_icon }} fa-{{ if .Params.icon_size }}{{ .Params.icon_size }}{{ else }}3x{{ end }}"></i>
+                    </div>
+                    {{ end }}
+                </header>
+                
+                <div class="content">
+                    {{ .Content }}
+                </div>
+                
+                {{ if .Params.tags }}
+                <div class="tags mt-4">
+                    <i class="fas fa-tags me-1"></i>
+                    {{ range $index, $tag := .Params.tags }}
+                        {{ if gt $index 0 }}, {{ end }}
+                        <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="text-decoration-none">{{ . }}</a>
+                    {{ end }}
+                </div>
+                {{ end }}
+                
+                <div class="page-navigation mt-5 pt-4 border-top">
+                    <div class="row">
+                        <div class="col-6 text-start">
+                            {{ with .PrevInSection }}
+                            <a href="{{ .Permalink }}" class="text-decoration-none">
+                                <i class="fas fa-arrow-left me-1"></i> {{ .Title }}
+                            </a>
+                            {{ end }}
+                        </div>
+                        <div class="col-6 text-end">
+                            {{ with .NextInSection }}
+                            <a href="{{ .Permalink }}" class="text-decoration-none">
+                                {{ .Title }} <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+{{ end }}

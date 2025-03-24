@@ -1,0 +1,120 @@
+{{ define "main" }}
+<div class="container py-5 mt-5">
+    <!-- Icon Section -->
+    {{ if .Params.icon_section }}
+    <section class="icon-section py-5 {{ if eq .Params.icon_section.background "dark" }}bg-dark text-light{{ else if eq .Params.icon_section.background "primary" }}bg-primary text-light{{ else if eq .Params.icon_section.background "gradient" }}gradient-bg text-light{{ else }}bg-light{{ end }} rounded">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="text-center mb-5">
+                <h2>{{ .Params.icon_section.heading }}</h2>
+                {{ if .Params.icon_section.subheading }}
+                <p class="lead">{{ .Params.icon_section.subheading }}</p>
+                {{ end }}
+            </div>
+            
+            <!-- Icon Grid -->
+            <div class="row g-4 justify-content-center">
+                {{ $columns := default 4 .Params.icon_section.columns }}
+                {{ $colClass := cond (eq $columns 1) "col-md-12" (cond (eq $columns 2) "col-md-6" (cond (eq $columns 3) "col-md-4" "col-md-3")) }}
+                
+                {{ range .Params.icon_section.items }}
+                <div class="{{ $colClass }}">
+                    {{ $style := default "card" $.Params.icon_section.style }}
+                    
+                    {{ if eq $style "card" }}
+                    <!-- Card Style -->
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="text-{{ .color }} mb-3">
+                                <i class="{{ .icon }} fa-3x"></i>
+                            </div>
+                            <h4 class="card-title">{{ .title }}</h4>
+                            <p class="card-text">{{ .description }}</p>
+                        </div>
+                    </div>
+                    
+                    {{ else if eq $style "simple" }}
+                    <!-- Simple Style -->
+                    <div class="text-center mb-4">
+                        <div class="text-{{ .color }} mb-3">
+                            <i class="{{ .icon }} fa-3x"></i>
+                        </div>
+                        <h4>{{ .title }}</h4>
+                        <p>{{ .description }}</p>
+                    </div>
+                    
+                    {{ else if eq $style "circle" }}
+                    <!-- Circle Style -->
+                    <div class="text-center mb-4">
+                        <div class="icon-circle bg-{{ .color }} text-white mb-3">
+                            <i class="{{ .icon }}"></i>
+                        </div>
+                        <h4>{{ .title }}</h4>
+                        <p>{{ .description }}</p>
+                    </div>
+                    
+                    {{ else if eq $style "box" }}
+                    <!-- Box Style -->
+                    <div class="feature-box p-4 border rounded">
+                        <div class="d-flex">
+                            <div class="me-3 text-{{ .color }}">
+                                <i class="{{ .icon }} fa-2x"></i>
+                            </div>
+                            <div>
+                                <h4>{{ .title }}</h4>
+                                <p class="mb-0">{{ .description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </div>
+            
+            <!-- Optional CTA Button -->
+            {{ if and .Params.icon_section.cta .Params.icon_section.cta.show }}
+            <div class="text-center mt-5">
+                <a href="{{ .Params.icon_section.cta.url }}" class="btn btn-{{ default "primary" .Params.icon_section.cta.style }} btn-lg">
+                    {{ .Params.icon_section.cta.text }}
+                </a>
+            </div>
+            {{ end }}
+        </div>
+    </section>
+    {{ end }}
+    
+    <!-- Main Content -->
+    <article class="content-container mt-5">
+        <header class="mb-4">
+            <h1>{{ .Title }}</h1>
+            
+            {{ if .Params.featured_icon }}
+            <div class="featured-icon text-{{ if .Params.icon_color }}{{ .Params.icon_color }}{{ else }}primary{{ end }} my-4">
+                <i class="{{ .Params.featured_icon }} fa-{{ if .Params.icon_size }}{{ .Params.icon_size }}{{ else }}3x{{ end }}"></i>
+            </div>
+            {{ end }}
+            
+            <div class="meta text-muted mb-4">
+                {{ if .Params.author }}
+                <span class="me-3"><i class="fas fa-user me-1"></i> {{ .Params.author }}</span>
+                {{ end }}
+                <span class="me-3"><i class="fas fa-calendar me-1"></i> {{ .Date.Format "January 2, 2006" }}</span>
+            </div>
+        </header>
+        
+        <div class="content">
+            {{ .Content }}
+        </div>
+        
+        {{ if .Params.tags }}
+        <div class="tags mt-4">
+            <i class="fas fa-tags me-1"></i>
+            {{ range $index, $tag := .Params.tags }}
+                {{ if gt $index 0 }}, {{ end }}
+                <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="text-decoration-none">{{ . }}</a>
+            {{ end }}
+        </div>
+        {{ end }}
+    </article>
+</div>
+{{ end }}

@@ -6,6 +6,21 @@
     <description>Recent content in Tags on Fableford</description>
     <generator>Hugo</generator>
     <language>en-us</language>
+    <lastBuildDate>Mon, 24 Mar 2025 09:11:15 +0000</lastBuildDate>
     <atom:link href="https://www.fableford.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tag1</title>
+      <link>https://www.fableford.com/tags/tag1/</link>
+      <pubDate>Mon, 24 Mar 2025 09:11:15 +0000</pubDate>
+      <guid>https://www.fableford.com/tags/tag1/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tag2</title>
+      <link>https://www.fableford.com/tags/tag2/</link>
+      <pubDate>Mon, 24 Mar 2025 09:11:15 +0000</pubDate>
+      <guid>https://www.fableford.com/tags/tag2/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

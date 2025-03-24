@@ -198,3 +198,192 @@ input:checked + .slider:before {
     margin-right: 0.5rem;
     font-size: 1.2rem;
 }
+
+/* Sidebar Styles */
+.sidebar {
+    padding: 1.5rem;
+    border-radius: 0.25rem;
+    background-color: var(--bg-secondary-light);
+    margin-bottom: 1.5rem;
+}
+
+.sidebar h4 {
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.sidebar h5 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--primary-color);
+}
+
+/* Table of Contents Styling */
+.toc-container nav ul {
+    padding-left: 1rem;
+    list-style-type: none;
+}
+
+.toc-container nav li {
+    margin-bottom: 0.5rem;
+}
+
+.toc-container nav a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.toc-container nav a:hover {
+    color: var(--secondary-color);
+}
+
+/* Related Links Styling */
+.related-links ul li a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.related-links ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Downloads Styling */
+.downloads ul li a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.downloads ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Contact Info Block */
+.contact-info {
+    border-left: 4px solid var(--accent-color);
+}
+
+.contact-info h5 {
+    margin-bottom: 0.5rem;
+}
+
+.contact-info p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* Content Container */
+.content-container {
+    padding: 0 0 0 1.5rem;
+}
+
+.content {
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.content h3 {
+    margin-top: 1.75rem;
+    font-size: 1.3rem;
+}
+
+.content p {
+    margin-bottom: 1.25rem;
+}
+
+/* Featured icon styling */
+.featured-icon {
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+/* Icon circle style */
+.icon-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.icon-circle i {
+    font-size: 2rem;
+}
+
+/* Feature box styling */
+.feature-box {
+    transition: all 0.3s ease;
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.content ul, .content ol {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+}
+
+.content blockquote {
+    border-left: 4px solid var(--secondary-color);
+    padding-left: 1rem;
+    margin-left: 0;
+    color: #555;
+    font-style: italic;
+}
+
+/* Tags Styling */
+.tags a {
+    display: inline-block;
+    color: var(--secondary-color);
+}
+
+/* Page Navigation */
+.page-navigation {
+    font-size: 0.9rem;
+}
+
+.page-navigation a {
+    color: var(--secondary-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .content-container {
+        padding: 0;
+        margin-top: 2rem;
+    }
+    
+    .sidebar {
+        position: static !important;
+        top: 0 !important;
+    }
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .sidebar {
+    background-color: var(--primary-color);
+}
+
+[data-theme="dark"] .contact-info {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+[data-theme="dark"] .toc-container nav a,
+[data-theme="dark"] .content {
+    color: var(--text-light);
+}
