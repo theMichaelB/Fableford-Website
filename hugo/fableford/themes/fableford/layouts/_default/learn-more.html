@@ -1,0 +1,183 @@
+{{ define "main" }}
+    <!-- Page Header -->
+    <header class="gradient-bg py-5 mt-5">
+        <div class="container text-center">
+            <h1 class="mt-5">{{ .Params.pageHeader.title }}</h1>
+            <p class="lead text-light">{{ .Params.pageHeader.subtitle }}</p>
+        </div>
+    </header>
+
+    <!-- The Concept Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6">
+                    <h2 class="mb-4">{{ .Params.concept.title }}</h2>
+                    {{ .Params.concept.content | markdownify }}
+                </div>
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                            <h4 class="mb-3 text-center">Our Core Principles</h4>
+                            {{ range .Params.concept.principles }}
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="{{ .icon }} fa-lg text-primary me-3"></i>
+                                <div><strong>{{ .title }}</strong>: {{ .description }}</div>
+                            </div>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The World of Fableford -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ .Params.worldbuilding.title }}</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <p class="lead text-center mb-5">{{ .Params.worldbuilding.intro }}</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                {{ range .Params.worldbuilding.locations }}
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <i class="{{ .icon }} fa-3x text-primary"></i>
+                            </div>
+                            <h4>{{ .title }}</h4>
+                            <p>{{ .description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- Features and Benefits -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ .Params.features.title }}</h2>
+            <div class="row g-4">
+                {{ range .Params.features.items }}
+                <div class="col-lg-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex mb-3">
+                                <div class="me-3">
+                                    <i class="{{ .icon }} fa-2x text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4>{{ .title }}</h4>
+                                    {{ .description | markdownify }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Alternative -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="mb-4">{{ .Params.socialMedia.title }}</h2>
+                    {{ .Params.socialMedia.content | markdownify }}
+                </div>
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                            <h4 class="mb-3 text-center">Social Media vs. Fableford</h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Traditional Social Media</th>
+                                        <th>Fableford</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{ range .Params.socialMedia.comparison }}
+                                    <tr>
+                                        <td>{{ .traditional }}</td>
+                                        <td>{{ .fableford }}</td>
+                                    </tr>
+                                    {{ end }}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ .Params.faqs.title }}</h2>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="accordion" id="fablefordFAQ">
+                        {{ range $index, $faq := .Params.faqs.items }}
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="heading{{ $index }}">
+                                <button class="accordion-button {{ if not .expanded }}collapsed{{ end }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $index }}" aria-expanded="{{ .expanded }}" aria-controls="collapse{{ $index }}">
+                                    {{ .question }}
+                                </button>
+                            </h3>
+                            <div id="collapse{{ $index }}" class="accordion-collapse collapse {{ if .expanded }}show{{ end }}" aria-labelledby="heading{{ $index }}" data-bs-parent="#fablefordFAQ">
+                                <div class="accordion-body">
+                                    <p>{{ .answer }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ .Params.timeline.title }}</h2>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="position-relative">
+                        <!-- Timeline Line -->
+                        <div class="position-absolute h-100" style="width: 2px; background-color: var(--primary-color); left: 20px; top: 0;"></div>
+                        
+                        {{ range .Params.timeline.events }}
+                        <div class="d-flex mb-5">
+                            <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; z-index: 1;">{{ .number }}</div>
+                            <div class="ms-4">
+                                <h4>{{ .date }}: {{ .title }}</h4>
+                                <p>{{ .description }}</p>
+                            </div>
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container text-center py-5">
+            <h2 class="mb-4">{{ .Params.cta.title }}</h2>
+            <p class="lead mb-5">{{ .Params.cta.description }}</p>
+            <a href="{{ .Params.cta.button.url }}" class="btn btn-primary btn-lg">{{ .Params.cta.button.text }}</a>
+        </div>
+    </section>
+{{ end }}

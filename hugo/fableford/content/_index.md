@@ -10,7 +10,7 @@ hero:
       url: "#join-beta"
       class: "btn-primary btn-lg"
     - text: "Learn More"
-      url: "#what-is"
+      url: "/learn-more"
       class: "btn-outline-light btn-lg"
 
 whatIs:
