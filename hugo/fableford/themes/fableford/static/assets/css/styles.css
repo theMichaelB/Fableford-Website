@@ -387,3 +387,31 @@ input:checked + .slider:before {
 [data-theme="dark"] .content {
     color: var(--text-light);
 }
+
+
+.feature-banner {
+    border-radius: 0;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.75rem 0;
+}
+
+.feature-banner .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Push down the fixed navbar to accommodate the banner */
+body.has-feature-banner .navbar.fixed-top {
+    top: 54px;
+}
+
+/* Adjust the page header margin for the banner and navbar */
+body.has-feature-banner header.mt-5 {
+    margin-top: calc(3rem + 54px) !important;
+}
+
+/* For dark mode */
+[data-theme="dark"] .feature-banner {
+    background-color: var(--primary-color);
+}
