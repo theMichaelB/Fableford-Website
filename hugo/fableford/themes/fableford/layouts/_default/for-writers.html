@@ -1,0 +1,272 @@
+{{ define "main" }}
+    <!-- Page Header -->
+    <header class="gradient-bg py-5 mt-5">
+        <div class="container text-center">
+            <h1 class="mt-5">{{ .Params.pageHeader.title }}</h1>
+            <p class="lead text-light">{{ .Params.pageHeader.subtitle }}</p>
+        </div>
+    </header>
+
+    <!-- Introduction Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="mb-4">{{ .Params.intro.title }}</h2>
+                    {{ .Params.intro.content | markdownify }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Writing Process Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ .Params.process.title }}</h2>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="position-relative">
+                        <!-- Process Line -->
+                        <div class="position-absolute h-100" style="width: 2px; background-color: var(--primary-color); left: 23px; top: 0;"></div>
+                        
+                        {{ range .Params.process.steps }}
+                        <div class="d-flex mb-5">
+                            <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; z-index: 1;">
+                                <i class="{{ .icon }}"></i>
+                            </div>
+                            <div class="ms-4">
+                                <h4>Step {{ .number }}: {{ .title }}</h4>
+                                <p>{{ .description }}</p>
+                            </div>
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Character Creation Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ .Params.characterCreation.title }}</h2>
+            <div class="row justify-content-center mb-4">
+                <div class="col-lg-8 text-center">
+                    {{ .Params.characterCreation.content | markdownify }}
+                </div>
+            </div>
+            <div class="row g-4">
+                {{ range .Params.characterCreation.cards }}
+                <div class="col-lg-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex mb-3">
+                                <div class="me-3">
+                                    <i class="{{ .icon }} fa-2x text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4>{{ .title }}</h4>
+                                    <p>{{ .description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- Life-First Storytelling Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ .Params.lifeFirstStories.title }}</h2>
+            <div class="row justify-content-center mb-4">
+                <div class="col-lg-8 text-center">
+                    {{ .Params.lifeFirstStories.content | markdownify }}
+                </div>
+            </div>
+            <div class="row g-4">
+                {{ range .Params.lifeFirstStories.principles }}
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <h4 class="mb-3">{{ .title }}</h4>
+                            <p>{{ .content }}</p>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- Collaboration Guidelines Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ .Params.collaboration.title }}</h2>
+            <div class="row justify-content-center mb-4">
+                <div class="col-lg-8 text-center">
+                    {{ .Params.collaboration.content | markdownify }}
+                </div>
+            </div>
+            <div class="row g-4">
+                {{ range .Params.collaboration.guidelines }}
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <i class="{{ .icon }} fa-3x text-primary"></i>
+                            </div>
+                            <h4>{{ .title }}</h4>
+                            <p>{{ .description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- Character Interactions Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ .Params.characterInteractions.title }}</h2>
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8">
+                    {{ .Params.characterInteractions.content | markdownify }}
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-success text-white">
+                            <h4 class="mb-0">{{ .Params.characterInteractions.examples.acceptable.title }}</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="mb-0">
+                                {{ range .Params.characterInteractions.examples.acceptable.items }}
+                                <li class="mb-2">{{ . }}</li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-danger text-white">
+                            <h4 class="mb-0">{{ .Params.characterInteractions.examples.problematic.title }}</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="mb-0">
+                                {{ range .Params.characterInteractions.examples.problematic.items }}
+                                <li class="mb-2">{{ . }}</li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Monetization Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ .Params.monetization.title }}</h2>
+            <div class="row justify-content-center mb-4">
+                <div class="col-lg-8 text-center">
+                    {{ .Params.monetization.content | markdownify }}
+                </div>
+            </div>
+            <div class="row g-4">
+                {{ range .Params.monetization.methods }}
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <i class="{{ .icon }} fa-3x text-primary"></i>
+                            </div>
+                            <h4>{{ .title }}</h4>
+                            <p>{{ .description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- Canon Requirements Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ .Params.canonRequirements.title }}</h2>
+            <div class="row justify-content-center mb-4">
+                <div class="col-lg-8 text-center">
+                    {{ .Params.canonRequirements.content | markdownify }}
+                </div>
+            </div>
+            <div class="row g-4 mb-4">
+                {{ range .Params.canonRequirements.requirements }}
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    <i class="{{ .icon }} fa-2x text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4>{{ .title }}</h4>
+                                    <p class="mb-0">{{ .description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-center">
+                            <h4>{{ .Params.canonRequirements.nonCanon.title }}</h4>
+                            <p class="mb-0">{{ .Params.canonRequirements.nonCanon.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Getting Started Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ .Params.gettingStarted.title }}</h2>
+            <div class="row g-4 justify-content-center">
+                {{ range .Params.gettingStarted.steps }}
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 shadow-sm text-center">
+                        <div class="card-body">
+                            <div class="display-4 mb-3">{{ .number }}</div>
+                            <h4>{{ .title }}</h4>
+                            <p>{{ .description }}</p>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 pb-4">
+                            <a href="{{ .url }}" class="btn btn-primary">{{ .action }}</a>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container text-center py-5">
+            <h2 class="mb-4">{{ .Params.cta.title }}</h2>
+            <p class="lead mb-5">{{ .Params.cta.description }}</p>
+            <a href="{{ .Params.cta.button.url }}" class="btn btn-primary btn-lg">{{ .Params.cta.button.text }}</a>
+        </div>
+    </section>
+{{ end }}
