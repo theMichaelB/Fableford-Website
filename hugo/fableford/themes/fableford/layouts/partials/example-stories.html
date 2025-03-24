@@ -1,3 +1,4 @@
+<!-- themes/fableford/layouts/partials/example-stories.html -->
 <section class="py-5">
     <div class="container">
         <h2 class="text-center mb-5">{{ .Params.examples.title }}</h2>
@@ -42,10 +43,16 @@
                 </div>
                 
                 <div class="text-center">
-                    <p class="lead">{{ .Params.examples.emphasis | markdownify }}</p>
+                    <p class="lead">
+                        {{ if .Params.examples.emphasis_icon }}
+                            <i class="{{ .Params.examples.emphasis_icon }}"></i> {{ .Params.examples.emphasis_text }}
+                        {{ else if .Params.examples.emphasis }}
+                            {{ .Params.examples.emphasis | safeHTML }}
+                        {{ end }}
+                    </p>
                     <p>{{ .Params.examples.explanation }}</p>
                 </div>
             </div>
         </div>
     </div>
-</section> 
+</section>

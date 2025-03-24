@@ -2,6 +2,7 @@ baseURL = "https://www.fableford.com"
 languageCode = "en-us"
 title = "Fableford"
 theme = "fableford"
+disableKinds = ["categories", "tags", "taxonomy", "RSS"]
 
 [menu]
   [[menu.main]]
@@ -17,12 +18,12 @@ theme = "fableford"
   [[menu.main]]
     identifier = "for-writers"
     name = "For Writers"
-    url = "#for-writers"
+    url = "homepage/"
     weight = 3
   [[menu.main]]
     identifier = "for-readers"
     name = "For Readers"
-    url = "#for-readers"
+    url = "sidebar/"
     weight = 4
   [[menu.main]]
     identifier = "join-beta"

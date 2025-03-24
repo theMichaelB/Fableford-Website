@@ -1,0 +1,37 @@
+{{ define "main" }}
+<div class="container py-5 mt-5">
+    <header class="mb-5">
+        <h1>{{ .Title }}</h1>
+        {{ with .Description }}
+        <div class="lead">{{ . }}</div>
+        {{ end }}
+    </header>
+
+    <div class="row">
+        {{ range .Pages }}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{{ .RelPermalink }}" class="text-decoration-none">{{ .Title }}</a>
+                    </h5>
+                    
+                    {{ if .Params.featured_icon }}
+                    <div class="text-{{ if .Params.icon_color }}{{ .Params.icon_color }}{{ else }}primary{{ end }} my-3">
+                        <i class="{{ .Params.featured_icon }} fa-2x"></i>
+                    </div>
+                    {{ end }}
+                    
+                    <p class="card-text">{{ .Summary }}</p>
+                </div>
+                <div class="card-footer text-muted">
+                    <small>
+                        <i class="fas fa-calendar-alt me-1"></i> {{ .Date.Format "January 2, 2006" }}
+                    </small>
+                </div>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

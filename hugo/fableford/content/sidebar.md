@@ -7,8 +7,6 @@ featured_icon: "fas fa-book"  # Replace with an appropriate Font Awesome icon
 icon_color: "primary"  # Options: primary, secondary, success, danger, warning, info
 icon_size: "4x"  # Options: 1x through 10x
 draft: false
-tags: ["tag1", "tag2"]
-categories: ["category1"]
 layout: "sidebar"
 weight: 10
 

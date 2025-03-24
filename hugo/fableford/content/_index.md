@@ -101,7 +101,8 @@ examples:
       author: "Written by Writer #3"
   conclusion: "These three separate stories, by different writers, now form a connected narrative thread that readers can follow from multiple perspectives."
   finalNote: "Over time, hundreds of such connections create a rich, interconnected world!"
-  emphasis: "<i class=\"fas fa-exclamation-circle text-primary me-2\"></i> This isn't role-playing, it's collaborative publishing"
+  emphasis_icon: "fas fa-exclamation-circle text-primary me-2"
+  emphasis_text: "This isn't role-playing—it's collaborative publishing"
   explanation: "Writers aren't just conversing in character; they're creating complete, polished stories that stand on their own while connecting to a larger world."
 
 cta:

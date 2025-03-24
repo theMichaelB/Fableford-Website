@@ -1,0 +1,63 @@
+{{ define "main" }}
+<div class="container py-5 mt-5">
+    <article class="content-container">
+        <header class="mb-4">
+            <h1>{{ .Title }}</h1>
+            
+            {{ if .Params.featured_icon }}
+            <div class="featured-icon text-{{ if .Params.icon_color }}{{ .Params.icon_color }}{{ else }}primary{{ end }} my-4">
+                <i class="{{ .Params.featured_icon }} fa-{{ if .Params.icon_size }}{{ .Params.icon_size }}{{ else }}3x{{ end }}"></i>
+            </div>
+            {{ end }}
+            
+            <div class="meta text-muted mb-4">
+                {{ if .Params.author }}
+                <span class="me-3"><i class="fas fa-user me-1"></i> {{ .Params.author }}</span>
+                {{ end }}
+                <span class="me-3"><i class="fas fa-calendar me-1"></i> {{ .Date.Format "January 2, 2006" }}</span>
+                {{ if .Params.categories }}
+                <span><i class="fas fa-folder me-1"></i> 
+                    {{ range $index, $category := .Params.categories }}
+                        {{ if gt $index 0 }}, {{ end }}
+                        <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+                    {{ end }}
+                </span>
+                {{ end }}
+            </div>
+        </header>
+        
+        <div class="content">
+            {{ .Content }}
+        </div>
+        
+        {{ if .Params.tags }}
+        <div class="tags mt-4">
+            <i class="fas fa-tags me-1"></i>
+            {{ range $index, $tag := .Params.tags }}
+                {{ if gt $index 0 }}, {{ end }}
+                <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="text-decoration-none">{{ . }}</a>
+            {{ end }}
+        </div>
+        {{ end }}
+        
+        <div class="page-navigation mt-5 pt-4 border-top">
+            <div class="row">
+                <div class="col-6 text-start">
+                    {{ with .PrevInSection }}
+                    <a href="{{ .Permalink }}" class="text-decoration-none">
+                        <i class="fas fa-arrow-left me-1"></i> {{ .Title }}
+                    </a>
+                    {{ end }}
+                </div>
+                <div class="col-6 text-end">
+                    {{ with .NextInSection }}
+                    <a href="{{ .Permalink }}" class="text-decoration-none">
+                        {{ .Title }} <i class="fas fa-arrow-right ms-1"></i>
+                    </a>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+{{ end }}
