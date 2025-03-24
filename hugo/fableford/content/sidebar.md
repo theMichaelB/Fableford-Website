@@ -1,8 +1,6 @@
 ---
 title: "Sidebar"
 description: "A brief description of this document for SEO purposes"
-date: 2025-03-24T09:11:15Z
-author: "Author Name"
 featured_icon: "fas fa-book"  # Replace with an appropriate Font Awesome icon
 icon_color: "primary"  # Options: primary, secondary, success, danger, warning, info
 icon_size: "4x"  # Options: 1x through 10x

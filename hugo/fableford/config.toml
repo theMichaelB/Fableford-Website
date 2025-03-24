@@ -18,12 +18,12 @@ disableKinds = ["categories", "tags", "taxonomy", "RSS"]
   [[menu.main]]
     identifier = "for-writers"
     name = "For Writers"
-    url = "homepage/"
+    url = "/homepage/"
     weight = 3
   [[menu.main]]
     identifier = "for-readers"
     name = "For Readers"
-    url = "sidebar/"
+    url = "/sidebar/"
     weight = 4
   [[menu.main]]
     identifier = "join-beta"

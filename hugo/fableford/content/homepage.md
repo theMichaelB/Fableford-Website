@@ -3,6 +3,7 @@ title: "Homepage"
 description: "A brief description of this page for SEO purposes"
 date: 2025-03-24T09:09:41Z
 draft: false
+layout: single
 
 hero:
   title: "Main Page Headline"
