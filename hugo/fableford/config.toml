@@ -37,17 +37,6 @@ theme = "fableford"
     parent = "learn-more-parent"
     weight = 3
     
-  [[menu.main]]
-    identifier = "stories"
-    name = "Stories"
-    url = "#"
-    weight = 3
-    
-  [[menu.main]]
-    identifier = "join-beta"
-    name = "Join Beta"
-    url = "/#join-beta"
-    weight = 4
 
 [params]
   description = "Fableford is a collaborative storytelling platform where writers create and publish interconnected stories through their own characters in a shared world."
