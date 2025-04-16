@@ -1,14 +1,35 @@
 {{ define "main" }}
 <div class="container mt-5 pt-5">
-    <h1>Locations</h1>
-    <ul class="list-group">
+    <header class="mb-5">
+        <h1>Locations in The Happy Place</h1>
+        <p class="lead">Explore the various locations featured in The Happy Place stories.</p>
+    </header>
+    
+    <div class="row g-4">
         {{ range .Pages }}
-        <li class="list-group-item">
-            <a href="{{ .RelPermalink }}">{{ .Params.name }}</a>
-            {{ with .Params.type }}<span class="text-muted"> - {{ . }}</span>{{ end }}
-            {{ with .Params.area }}<br><small class="text-muted">{{ . }}</small>{{ end }}
-        </li>
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title">{{ .Params.name }}</h3>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ .Params.type }}</h6>
+                    
+                    {{ with .Params.area }}
+                    <p class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> {{ . }}</p>
+                    {{ end }}
+                    
+                    {{ with .Params.owner }}
+                    <p class="mb-2"><i class="fas fa-user me-2"></i> Owned by: {{ . }}</p>
+                    {{ end }}
+                    
+                    {{ with .Params.established }}
+                    <p class="mb-2"><i class="fas fa-calendar me-2"></i> Established: {{ . }}</p>
+                    {{ end }}
+                    
+                    <a href="{{ .RelPermalink }}" class="btn btn-primary mt-3">View Details</a>
+                </div>
+            </div>
+        </div>
         {{ end }}
-    </ul>
+    </div>
 </div>
 {{ end }}
