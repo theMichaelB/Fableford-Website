@@ -1,0 +1,14 @@
+{{ define "main" }}
+<div class="container mt-5 pt-5">
+    <h1>Locations</h1>
+    <ul class="list-group">
+        {{ range .Pages }}
+        <li class="list-group-item">
+            <a href="{{ .RelPermalink }}">{{ .Params.name }}</a>
+            {{ with .Params.type }}<span class="text-muted"> - {{ . }}</span>{{ end }}
+            {{ with .Params.area }}<br><small class="text-muted">{{ . }}</small>{{ end }}
+        </li>
+        {{ end }}
+    </ul>
+</div>
+{{ end }}
