@@ -9,26 +9,45 @@ theme = "fableford"
     name = "Home"
     url = "/"
     weight = 1
+    
   [[menu.main]]
-    identifier = "learn-more"
+    identifier = "learn-more-parent"
     name = "Learn More"
-    url = "/learn-more/"
+    url = "#"
     weight = 2
+    
+  [[menu.main]]
+    identifier = "about"
+    name = "About Fableford"
+    url = "/learn-more/"
+    parent = "learn-more-parent"
+    weight = 1
+    
   [[menu.main]]
     identifier = "for-writers"
     name = "For Writers"
     url = "/for-writers/"
-    weight = 3
+    parent = "learn-more-parent"
+    weight = 2
+    
   [[menu.main]]
     identifier = "for-readers"
     name = "For Readers"
     url = "/for-readers/"
-    weight = 4
+    parent = "learn-more-parent"
+    weight = 3
+    
+  [[menu.main]]
+    identifier = "stories"
+    name = "Stories"
+    url = "#"
+    weight = 3
+    
   [[menu.main]]
     identifier = "join-beta"
     name = "Join Beta"
     url = "/#join-beta"
-    weight = 5
+    weight = 4
 
 [params]
   description = "Fableford is a collaborative storytelling platform where writers create and publish interconnected stories through their own characters in a shared world."

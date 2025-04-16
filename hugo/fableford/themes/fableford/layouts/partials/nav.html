@@ -6,32 +6,43 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
+                <!-- Main menu items -->
+                {{ $currentPage := . }}
                 {{ range .Site.Menus.main }}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ .URL }}">{{ .Name }}</a>
-                </li>
+                    {{ if .HasChildren }}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="{{ .Identifier }}Dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ .Name }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="{{ .Identifier }}Dropdown">
+                            {{ range .Children }}
+                            <li><a class="dropdown-item" href="{{ .URL }}">{{ .Name }}</a></li>
+                            {{ end }}
+                        </ul>
+                    </li>
+                    {{ else }}
+                    <li class="nav-item">
+                        <a class="nav-link{{ if $currentPage.IsMenuCurrent "main" . }} active{{ end }}" href="{{ .URL }}">{{ .Name }}</a>
+                    </li>
+                    {{ end }}
                 {{ end }}
 
-                <!-- Stories Dropdown -->
+                <!-- Stories Dropdown (Hardcoded for now) -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="storiesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Stories
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="storiesDropdown">
-                        <li class="dropdown-submenu">
-                            <a class="dropdown-item dropdown-toggle" href="#">The Happy Place</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/stories/the-happy-place/locations/">Locations</a></li>
-                                <li><a class="dropdown-item" href="/stories/the-happy-place/characters/">Characters</a></li>
-                                <li><a class="dropdown-item" href="/stories/the-happy-place/stories/">Stories</a></li>
-                            </ul>
-                        </li>
-                        <!-- Additional stories can be added here later -->
+                        <li><h6 class="dropdown-header">The Happy Place</h6></li>
+                        <li><a class="dropdown-item" href="/stories/the-happy-place/locations/">Locations</a></li>
+                        <li><a class="dropdown-item" href="/stories/the-happy-place/characters/">Characters</a></li>
+                        <li><a class="dropdown-item" href="/stories/the-happy-place/stories/">Stories</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="/stories/">All Stories</a></li>
                     </ul>
                 </li>
 
+                <!-- Theme Switch -->
                 <li class="nav-item theme-switch-wrapper">
                     <span class="theme-icon"><i class="fas fa-sun"></i></span>
                     <label class="theme-switch" for="checkbox">
