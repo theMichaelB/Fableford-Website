@@ -15,6 +15,11 @@
                 <div class="card-body">
                     <h3 class="card-title">{{ .Title }}</h3>
                     
+                    <!-- Word count display -->
+                    <div class="story-meta text-muted small mb-2">
+                        <i class="fas fa-book-reader me-1"></i> {{ div (countwords .Content) 250 | math.Ceil }} min read ({{ countwords .Content }} words)
+                    </div>
+                    
                     {{ with .Params.synopsis }}
                     <div class="story-synopsis mb-3">
                         <p>{{ . }}</p>

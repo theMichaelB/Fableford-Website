@@ -6,6 +6,11 @@
                 <header class="mb-4">
                     <h1 class="display-4">{{ .Title }}</h1>
                     
+                    <!-- Word count display -->
+                    <div class="story-meta text-muted mb-3">
+                        <i class="fas fa-book-reader me-1"></i> {{ div (countwords .Content) 250 | math.Ceil }} minute read ({{ countwords .Content }} words)
+                    </div>
+                    
                     {{ with .Params.synopsis }}
                     <div class="story-synopsis bg-light p-3 rounded mb-4">
                         <p class="mb-0"><em>{{ . }}</em></p>
@@ -91,9 +96,12 @@
                         {{ range first 5 $uniqueRelatedStories }}
                         <li class="list-group-item">
                             <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                            {{ with .Params.synopsis }}
-                            <p class="mb-0 small text-muted">{{ . }}</p>
-                            {{ end }}
+                            <div class="d-flex justify-content-between align-items-center mt-1">
+                                {{ with .Params.synopsis }}
+                                <p class="mb-0 small text-muted">{{ . }}</p>
+                                {{ end }}
+                                <small class="text-muted ms-2 flex-shrink-0">{{ countwords .Content }} words</small>
+                            </div>
                         </li>
                         {{ end }}
                     </ul>
