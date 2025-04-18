@@ -457,12 +457,21 @@ input:checked + .slider:before {
     line-height: 1.6;
 }
 
-
 /* Story-specific styling */
 
 /* Story cards */
 .story-meta {
     font-size: 0.9rem;
+}
+
+.story-synopsis {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+    font-style: italic;
+    border-left: 3px solid var(--secondary-color);
+    padding-left: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 .characters-in-story a,
@@ -479,6 +488,12 @@ input:checked + .slider:before {
 /* Single story page */
 .story-container header .story-meta {
     font-size: 1rem;
+}
+
+.story-container header .story-synopsis {
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.6;
 }
 
 .story-container .content {
@@ -499,6 +514,10 @@ input:checked + .slider:before {
 /* Dark mode adjustments */
 [data-theme="dark"] .story-container header .bg-light {
     background-color: var(--primary-color) !important;
+}
+
+[data-theme="dark"] .story-synopsis {
+    color: var(--text-light);
 }
 
 [data-theme="dark"] .related-stories .list-group-item:hover,

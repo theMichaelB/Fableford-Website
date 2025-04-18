@@ -6,11 +6,11 @@
                 <header class="mb-4">
                     <h1 class="display-4">{{ .Title }}</h1>
                     
-                    <div class="story-meta mb-4">
-                        {{ if .Params.sequence }}
-                        <span class="badge bg-primary me-2">Sequence: {{ .Params.sequence }}</span>
-                        {{ end }}
+                    {{ with .Params.synopsis }}
+                    <div class="story-synopsis bg-light p-3 rounded mb-4">
+                        <p class="mb-0"><em>{{ . }}</em></p>
                     </div>
+                    {{ end }}
                     
                     <div class="row mb-4">
                         <!-- Characters Column -->
@@ -91,17 +91,9 @@
                         {{ range first 5 $uniqueRelatedStories }}
                         <li class="list-group-item">
                             <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                            <small class="text-muted d-block">Featuring:
-                                {{ $characters := slice }}
-                                {{ range .Params.characters }}
-                                    {{ $char_id := . }}
-                                    {{ $character := index (where (where site.RegularPages "Section" "stories") ".Params.character_id" $char_id) 0 }}
-                                    {{ with $character }}
-                                        {{ $characters = $characters | append .Params.name }}
-                                    {{ end }}
-                                {{ end }}
-                                {{ delimit $characters ", " }}
-                            </small>
+                            {{ with .Params.synopsis }}
+                            <p class="mb-0 small text-muted">{{ . }}</p>
+                            {{ end }}
                         </li>
                         {{ end }}
                     </ul>
