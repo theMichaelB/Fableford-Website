@@ -107,7 +107,7 @@ examples:
 
 cta:
   title: "Join the Beta"
-  description: "We're launching a limited beta at the end of March 2025. Join our Discord to be among the first writers to publish in Fableford."
+  description: "We're currently seeking creative writers to help build our first collaborative world. Join us to become a founding member of fableford."
   discord_link: "https://discord.gg/6vmx7u2es5"
 
 footer:
