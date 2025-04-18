@@ -566,3 +566,23 @@ input:checked + .slider:before {
         font-size: 2.5rem;
     }
 }
+
+/* Total word count styling */
+.total-wordcount {
+    font-size: 1rem;
+    background-color: rgba(var(--bs-primary-rgb), 0.05);
+    border-left: 3px solid var(--secondary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.total-wordcount i {
+    color: var(--secondary-color);
+}
+
+/* Dark mode styling */
+[data-theme="dark"] .total-wordcount {
+    background-color: rgba(var(--bs-secondary-rgb), 0.1);
+}
