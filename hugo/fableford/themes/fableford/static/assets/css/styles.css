@@ -387,3 +387,72 @@ input:checked + .slider:before {
 [data-theme="dark"] .content {
     color: var(--text-light);
 }
+
+
+/* Character-specific styling */
+
+/* Character cards */
+.character-meta {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+.character-goals {
+    font-size: 0.85rem;
+}
+
+.character-goals ul {
+    margin-top: 0.5rem;
+}
+
+/* Single character page */
+.character-container header .character-meta {
+    font-size: 1rem;
+}
+
+.character-goals {
+    background-color: var(--bg-secondary-light);
+    border-left: 4px solid var(--secondary-color);
+}
+
+.character-connections .list-group-item,
+.stories-featuring .list-group-item {
+    transition: all 0.2s ease;
+}
+
+.character-connections .list-group-item:hover,
+.stories-featuring .list-group-item:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.05);
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .character-goals {
+    background-color: var(--primary-color);
+    border-left-color: var(--secondary-color);
+}
+
+[data-theme="dark"] .character-connections .list-group-item:hover,
+[data-theme="dark"] .stories-featuring .list-group-item:hover {
+    background-color: rgba(var(--bs-secondary-rgb), 0.1);
+}
+
+/* Character content styling */
+.character-container .content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
+}
+
+.character-container .content h3 {
+    margin-top: 1.5rem;
+    font-size: 1.4rem;
+    color: var(--primary-color);
+}
+
+.character-container .content p {
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+}
