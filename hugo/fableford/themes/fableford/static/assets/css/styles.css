@@ -137,11 +137,23 @@ footer a:hover {
     color: #f8f9fa !important;
 }
 
-/* Enhance step number visibility in dark mode */
-[data-theme="dark"] .step-number {
-    background-color: #3498db; /* Using the original secondary-color value */
-    color: white;
-    border: 2px solid white; /* Adding a white border for better definition */
+/* Make sure icons are visible on all backgrounds */
+.theme-icon-sun .fas {
+    color: #ffc107 !important; /* Yellow sun */
+}
+
+.theme-icon-moon .fas {
+    color: #e1e1e1 !important; /* Light gray moon */
+}
+
+
+/* Make icons visible in dark mode too */
+[data-theme="dark"] .theme-icon-sun .fas {
+    color: #ffc107 !important; 
+}
+
+[data-theme="dark"] .theme-icon-moon .fas {
+    color: #e1e1e1 !important;
 }
 
 /* Dark Mode Toggle Switch */
@@ -151,11 +163,18 @@ footer a:hover {
     margin-left: 1rem;
 }
 
+/* Mobile-specific positioning */
+.theme-switch-mobile {
+    margin-right: 1rem;
+    margin-left: auto;
+}
+
 .theme-switch {
     display: inline-block;
     height: 24px;
     position: relative;
     width: 48px;
+    margin: 0 0.5rem;
 }
 
 .theme-switch input {
@@ -173,6 +192,7 @@ footer a:hover {
     transition: .4s;
     border-radius: 34px;
 }
+
 
 .slider:before {
     background-color: white;
@@ -194,9 +214,12 @@ input:checked + .slider:before {
     transform: translateX(24px);
 }
 
+
 .theme-icon {
-    margin-right: 0.5rem;
-    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
 }
 
 /* Sidebar Styles */
@@ -361,16 +384,30 @@ input:checked + .slider:before {
     color: var(--secondary-color);
 }
 
+
 /* Responsive adjustments */
 @media (max-width: 991.98px) {
-    .content-container {
-        padding: 0;
-        margin-top: 2rem;
+    .theme-switch-mobile {
+        margin-right: 1rem;
     }
     
-    .sidebar {
-        position: static !important;
-        top: 0 !important;
+    .theme-icon {
+        font-size: 0.9rem;
+    }
+    
+    .theme-switch {
+        height: 20px;
+        width: 40px;
+    }
+    
+    .slider:before {
+        height: 14px;
+        width: 14px;
+        bottom: 3px;
+    }
+    
+    input:checked + .slider:before {
+        transform: translateX(20px);
     }
 }
 
