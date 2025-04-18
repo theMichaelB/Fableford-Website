@@ -1,8 +1,8 @@
 {{ define "main" }}
 <div class="container mt-5 pt-5">
     <header class="mb-5">
-        <h1>Locations in The Happy Place</h1>
-        <p class="lead">Explore the various locations featured in The Happy Place stories.</p>
+
+        {{ .Content }}
     </header>
     
     <div class="row g-4">
@@ -30,7 +30,6 @@
             </div>
         </div>
         {{ end }}
-        {{ .Content }}
     </div>
 </div>
 {{ end }}
