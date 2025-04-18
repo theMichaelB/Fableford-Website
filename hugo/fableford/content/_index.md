@@ -107,11 +107,8 @@ examples:
 
 cta:
   title: "Join the Beta"
-  description: "We're launching a limited beta at the end of March 2025. Reserve your spot now to be among the first writers to publish in Fableford."
-  form:
-    action: "/signup"
-    placeholder: "Enter your email"
-    button: "Sign Up"
+  description: "We're launching a limited beta at the end of March 2025. Join our Discord to be among the first writers to publish in Fableford."
+  discord_link: "https://discord.gg/6vmx7u2es5"
 
 footer:
   links:

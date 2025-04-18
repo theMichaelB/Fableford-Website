@@ -45,7 +45,7 @@ theme = "fableford"
     [[params.footer.links]]
       icon = "fab fa-discord"
       text = "Join our Discord"
-      url = "#"
+      url = "https://discord.gg/6vmx7u2es5"
     [[params.footer.links]]
       text = "Privacy Policy"
       url = "#"

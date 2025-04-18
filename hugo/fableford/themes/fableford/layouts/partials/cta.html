@@ -1,16 +1,14 @@
 <section class="cta-section" id="join-beta">
     <div class="container text-center">
         <h2 class="mb-4">{{ .Params.cta.title }}</h2>
-        <p class="lead mb-5">{{ .Params.cta.description }}</p>
+        <p class="lead mb-3">{{ .Params.cta.description }}</p>
+        <p class="mb-4">We're just getting started, so initially the beta is being run over Discord and Google Docs.</p>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form action="{{ .Params.cta.form.action }}" method="POST">
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="{{ .Params.cta.form.placeholder }}" aria-label="Email address">
-                        <button class="btn btn-primary" type="submit">{{ .Params.cta.form.button }}</button>
-                    </div>
-                </form>
+                <a href="https://discord.gg/6vmx7u2es5" class="btn btn-primary btn-lg">
+                    <i class="fab fa-discord me-2"></i>Join Our Discord
+                </a>
             </div>
         </div>
     </div>
-</section> 
+</section>
