@@ -456,3 +456,91 @@ input:checked + .slider:before {
     margin-bottom: 1.25rem;
     line-height: 1.6;
 }
+
+
+/* Story-specific styling */
+
+/* Story cards */
+.story-meta {
+    font-size: 0.9rem;
+}
+
+.characters-in-story a,
+.locations-in-story a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.characters-in-story a:hover,
+.locations-in-story a:hover {
+    text-decoration: underline;
+}
+
+/* Single story page */
+.story-container header .story-meta {
+    font-size: 1rem;
+}
+
+.story-container .content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.related-stories .list-group-item,
+.related-characters .list-group-item {
+    transition: all 0.2s ease;
+}
+
+.related-stories .list-group-item:hover,
+.related-characters .list-group-item:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.05);
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .story-container header .bg-light {
+    background-color: var(--primary-color) !important;
+}
+
+[data-theme="dark"] .related-stories .list-group-item:hover,
+[data-theme="dark"] .related-characters .list-group-item:hover {
+    background-color: rgba(var(--bs-secondary-rgb), 0.1);
+}
+
+/* Story content styling - improve readability */
+.story-container .content p {
+    margin-bottom: 1.5rem;
+}
+
+.story-container .content p:first-of-type::first-letter {
+    font-size: 3.2rem;
+    line-height: 0.7;
+    font-weight: 500;
+    margin-right: 0.1em;
+    float: left;
+    color: var(--primary-color);
+}
+
+/* Dialogue styling */
+.story-container .content p:has(em) {
+    margin-left: 1rem;
+    position: relative;
+}
+
+.story-container .content p:has(em)::before {
+    content: """;
+    position: absolute;
+    left: -1rem;
+    color: var(--secondary-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .story-container .content {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .story-container .content p:first-of-type::first-letter {
+        font-size: 2.5rem;
+    }
+}

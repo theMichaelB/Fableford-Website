@@ -1,0 +1,65 @@
+{{ define "main" }}
+<div class="container mt-5 pt-5">
+    <header class="mb-5">
+        <h1>{{ .Title }}</h1>
+        <p class="lead">{{ .Description }}</p>
+        <div class="header-content">
+            {{ .Content }}
+        </div>
+    </header>
+    
+    <div class="row g-4">
+        {{ range .Pages }}
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title">{{ .Title }}</h3>
+                    
+                    <div class="story-meta mb-3">
+                        <small class="text-muted">
+                            {{ if .Params.sequence }}
+                            <span class="me-3"><i class="fas fa-sort-numeric-down me-1"></i> Sequence: {{ .Params.sequence }}</span>
+                            {{ end }}
+                        </small>
+                    </div>
+                    
+                    <div class="characters-in-story mb-3">
+                        <strong><i class="fas fa-users me-2"></i>Featured Characters:</strong>
+                        <ul class="list-unstyled ms-4 mb-0">
+                            {{ range .Params.characters }}
+                                {{ $char_id := . }}
+                                {{ $character := index (where (where site.RegularPages "Section" "stories") ".Params.character_id" $char_id) 0 }}
+                                {{ with $character }}
+                                <li>- <a href="{{ .RelPermalink }}">{{ .Params.name }}</a> 
+                                    {{ with .Params.occupation }}
+                                    <small class="text-muted">({{ . }})</small>
+                                    {{ end }}
+                                </li>
+                                {{ end }}
+                            {{ end }}
+                        </ul>
+                    </div>
+                    
+                    {{ if .Params.locations }}
+                    <div class="locations-in-story mb-3">
+                        <strong><i class="fas fa-map-marker-alt me-2"></i>Locations:</strong>
+                        <ul class="list-unstyled ms-4 mb-0">
+                            {{ range .Params.locations }}
+                                {{ $loc_id := . }}
+                                {{ $location := index (where (where site.RegularPages "Section" "stories") ".Params.location_id" $loc_id) 0 }}
+                                {{ with $location }}
+                                <li>- <a href="{{ .RelPermalink }}">{{ .Params.name }}</a></li>
+                                {{ end }}
+                            {{ end }}
+                        </ul>
+                    </div>
+                    {{ end }}
+                    
+                    <a href="{{ .RelPermalink }}" class="btn btn-primary mt-3">Read Story</a>
+                </div>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

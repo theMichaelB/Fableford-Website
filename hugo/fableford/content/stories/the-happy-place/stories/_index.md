@@ -1,8 +1,7 @@
 ---
-title: "Stories"
-description: "A list of all stories in The Happy Place."
+title: "Stories of The Happy Place"
+description: "Explore the interconnected tales of characters who frequent The Happy Place."
+layout: "stories"
 ---
-
-# Stories
 
 Read all stories set in The Happy Place.
